@@ -512,3 +512,11 @@ weapon,mp/rpg_mp_pezbot_stand_grenade
 # an unused stock weapon (mp_carentan problem)
 # it's commented because there's no need to add it to mod.ff
 #weapon,mp/brick_blaster_mp
+
+fx,smoke/smoke_geotrail_rifle
+fx,smoke/smoke_geotrail_barret
+fx,smoke/smoke_geotrail_rifle_heavy
+material,binocular_overlay
+material,scope_overlay_acog
+material,scope_overlay_acog_low_res
+material,scope_overlay_russian
