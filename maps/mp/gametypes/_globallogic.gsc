@@ -6,6 +6,15 @@
 
 init()
 {
+	//ProjectileWeapons mod
+    thread maps\mp\gametypes\_wdrmod::init();
+    thread maps\mp\gametypes\_tweakables::wdrModTweaks();
+    thread maps\mp\gametypes\_tweakables::PenetCoefModTweaks();
+    thread maps\mp\gametypes\_tweakables::StoppingCoefModTweaks();
+    thread maps\mp\gametypes\_tweakables::weaponLengthModTweaks();
+    thread maps\mp\gametypes\_tweakables::weaponSpeedModTweaks();
+    thread maps\mp\gametypes\_tweakables::weaponZoomModTweaks();
+	//
 	// Initialize server load variables (do not thread)
 	openwarfare\_serverload::init();
 	
@@ -967,6 +976,9 @@ spawnPlayer()
 		// We're in the victory screen, but before intermission
 		self freezePlayerForRoundEnd();
 	}
+	
+	//ProjectileWeapons
+    self thread  maps\mp\gametypes\_wdrmod::AfterSpawn();
 	//PeZBOT
 	if( level.scr_pezbots_enable ) {
 		self openwarfare\_pezbot::DeinitTargetables();

@@ -309,7 +309,7 @@ init()
 	registerTweakable( "game", 			"playerwaittime", 		"scr_game_playerwaittime", 			15 ); //*
 	registerTweakable( "game", 			"matchstarttime", 		"scr_game_matchstarttime", 			5 ); //*
 	registerTweakable( "game", 			"onlyheadshots", 		"scr_game_onlyheadshots", 			0 ); //*
-	registerTweakable( "game", 			"allowkillcam", 		"scr_game_allowkillcam", 			1 ); //*
+	registerTweakable( "game", 			"allowkillcam", 		"scr_game_allowkillcam", 			0 ); //*
 	registerTweakable( "game", 			"spectatetype", 		"scr_game_spectatetype", 			2 ); //*
 	
 	registerTweakable( "game", 			"deathpointloss", 		"scr_game_deathpointloss", 			0 ); //*
@@ -340,7 +340,17 @@ init()
 	
 	registerTweakable( "hud", 		"showobjicons", 	"ui_hud_showobjicons", 						1 ); //*
 	setClientTweakable( "hud", 		"showobjicons" );
-	
+
+	//xpboost var
+	setDvar( "scr_xpboost", 0 );
+    //Min FOV value
+    setDvar( "cg_fovmin", 1 );
+    //StoppingCoef for weapons stopping power
+    setDvar( "scr_stoppingcoef", 0.25 );
+    //Ballistic calc coef
+    setDvar("scr_ballcalccoef", 145 );
+
+
 	level thread updateUITweakables();
 }
 
@@ -375,3 +385,398 @@ updateServerDvar( dvar, value )
 {
 	makeDVarServerInfo( dvar, value );
 }
+
+wdrModTweaks()
+{
+	// Assault class weapons
+	setDvar( "scr_wdr_m16", 0.00182 );
+	setDvar( "scr_wdr_m16_silenced", 0.00500 );
+	
+	setDvar( "scr_wdr_ak47", 0.00250 );
+	setDvar( "scr_wdr_ak47_silenced", 0.00500 );
+	
+	setDvar( "scr_wdr_m4", 0.00200 );
+	setDvar( "scr_wdr_m4_silenced", 0.00500 );
+	
+	setDvar( "scr_wdr_g3", 0.00200 );
+	setDvar( "scr_wdr_g3_silenced", 0.00500 );
+	
+	setDvar( "scr_wdr_g36c", 0.00200 );
+	setDvar( "scr_wdr_g36c_silenced", 0.00500 );
+	
+	setDvar( "scr_wdr_m14", 0.00200 );
+	setDvar( "scr_wdr_m14_silenced", 0.00500 );
+	
+	setDvar( "scr_wdr_mp44", 0.00333 );
+	
+	// Special Ops class weapons
+	setDvar( "scr_wdr_mp5", 0.00500 );
+	setDvar( "scr_wdr_mp5_silenced", 0.00500 );
+	
+	setDvar( "scr_wdr_skorpion", 0.01000 );
+	setDvar( "scr_wdr_skorpion_silenced", 0.01000 );
+	
+	setDvar( "scr_wdr_uzi", 0.01000 );
+	setDvar( "scr_wdr_uzi_silenced", 0.01000 );
+	
+	setDvar( "scr_wdr_ak74u", 0.00200 );
+	setDvar( "scr_wdr_ak74u_silenced", 0.00500 );
+	
+	setDvar( "scr_wdr_p90", 0.00500 );
+	setDvar( "scr_wdr_p90_silenced", 0.00500 );
+	
+	// Demolition class weapons
+	//setDvar( "scr_wdr_m1014", 0.00500 );
+	//setDvar( "scr_wdr_winchester1200", 0.00500 );
+	
+	// Heavy gunner class weapons
+	setDvar( "scr_wdr_saw", 0.00110 );
+	setDvar( "scr_wdr_rpd", 0.00100 );
+	setDvar( "scr_wdr_m60e4", 0.00091 );
+	
+	// Sniper class weapons
+	setDvar( "scr_wdr_dragunov", 0.00125 );
+	
+	setDvar( "scr_wdr_m40a3", 0.00109 );
+	
+	setDvar( "scr_wdr_barrett", 0.00056 );
+	
+	setDvar( "scr_wdr_remington700", 0.00083 );
+	
+	setDvar( "scr_wdr_m21", 0.00125 );
+	
+	// Handguns
+	setDvar( "scr_wdr_beretta", 0.02000 );
+	setDvar( "scr_wdr_beretta_silenced", 0.02000 );
+	
+	setDvar( "scr_wdr_colt45", 0.03333 );
+	setDvar( "scr_wdr_colt45_silenced", 0.03333 );
+	
+	setDvar( "scr_wdr_usp", 0.03333 );
+	setDvar( "scr_wdr_usp_silenced", 0.03333 );
+	
+	setDvar( "scr_wdr_deserteagle", 0.00500 );
+	
+}
+
+PenetCoefModTweaks()
+{
+// Assault class weapons
+setDvar( "scr_pnt_m16", 1.95 );
+setDvar( "scr_pnt_m16_silenced", 1.95 );
+
+setDvar( "scr_pnt_ak47", 1.65 );
+setDvar( "scr_pnt_ak47_silenced", 1.65 );
+
+setDvar( "scr_pnt_m4", 1.82 );
+setDvar( "scr_pnt_m4_silenced", 1.82 );
+
+setDvar( "scr_pnt_g3", 2.12 );
+setDvar( "scr_pnt_g3_silenced", 2.12 );
+
+setDvar( "scr_pnt_g36c", 1.75 );
+setDvar( "scr_pnt_g36c_silenced", 1.75 );
+
+setDvar( "scr_pnt_m14", 2.26 );
+setDvar( "scr_pnt_m14_silenced", 2.26 );
+
+setDvar( "scr_pnt_mp44", 1.41 );
+
+// Special Ops class weapons
+setDvar( "scr_pnt_mp5", 0.58 );
+setDvar( "scr_pnt_mp5_silenced", 0.58 );
+
+setDvar( "scr_pnt_skorpion", 0.59 );
+setDvar( "scr_pnt_skorpion_silenced", 0.59 );
+
+setDvar( "scr_pnt_uzi", 0.58 );
+setDvar( "scr_pnt_uzi_silenced", 0.58 );
+
+setDvar( "scr_pnt_ak74u", 1.57 );
+setDvar( "scr_pnt_ak74u_silenced", 1.57 );
+
+setDvar( "scr_pnt_p90", 1.45 );
+setDvar( "scr_pnt_p90_silenced", 1.45 );
+
+// Demolition class weapons
+//setDvar( "scr_pnt_m1014", 1 );
+//setDvar( "scr_pnt_winchester1200", 1 );
+
+// Heavy gunner class weapons
+setDvar( "scr_pnt_saw", 1.88 );
+setDvar( "scr_pnt_rpd", 1.59 );
+setDvar( "scr_pnt_m60e4", 2.26 );
+
+// Sniper class weapons
+setDvar( "scr_pnt_dragunov", 2.20 );
+
+setDvar( "scr_pnt_m40a3", 3.03 );
+
+setDvar( "scr_pnt_barrett", 4.52 );
+
+setDvar( "scr_pnt_remington700", 3.03 );
+
+setDvar( "scr_pnt_m21", 2.26 );
+
+// Handguns
+setDvar( "scr_pnt_beretta", 0.55 );
+setDvar( "scr_pnt_beretta_silenced", 0.55 );
+
+setDvar( "scr_pnt_colt45", 0.46 );
+setDvar( "scr_pnt_colt45_silenced", 0.46 );
+
+setDvar( "scr_pnt_usp", 0.46 );
+setDvar( "scr_pnt_usp_silenced", 0.46 );
+
+setDvar( "scr_pnt_deserteagle", 0.78 );
+
+}
+
+StoppingCoefModTweaks()
+{
+// Assault class weapons
+setDvar( "scr_stp_m16", 1.84 );
+setDvar( "scr_stp_m16_silenced", 1.84 );
+
+setDvar( "scr_stp_ak47", 5.50 );
+setDvar( "scr_stp_ak47_silenced", 5.50 );
+
+setDvar( "scr_stp_m4", 1.71 );
+setDvar( "scr_stp_m4_silenced", 1.71 );
+
+setDvar( "scr_stp_g3", 7.07 );
+setDvar( "scr_stp_g3_silenced", 7.07 );
+
+setDvar( "scr_stp_g36c", 1.65 );
+setDvar( "scr_stp_g36c_silenced", 1.65 );
+
+setDvar( "scr_stp_m14", 7.51 );
+setDvar( "scr_stp_m14_silenced", 7.51 );
+
+setDvar( "scr_stp_mp44", 5.43 );
+
+// Special Ops class weapons
+setDvar( "scr_stp_mp5", 3.78 );
+setDvar( "scr_stp_mp5_silenced", 3.78 );
+
+setDvar( "scr_stp_skorpion", 3.86 );
+setDvar( "scr_stp_skorpion_silenced", 3.86 );
+
+setDvar( "scr_stp_uzi", 3.78 );
+setDvar( "scr_stp_uzi_silenced", 3.78 );
+
+setDvar( "scr_stp_ak74u", 1.37 );
+setDvar( "scr_stp_ak74u_silenced", 1.37 );
+
+setDvar( "scr_stp_p90", 1.45 );
+setDvar( "scr_stp_p90_silenced", 1.45 );
+
+// Demolition class weapons
+//setDvar( "scr_stp_m1014", 1 );
+//setDvar( "scr_stp_winchester1200", 1 );
+
+// Heavy gunner class weapons
+setDvar( "scr_stp_saw", 1.77 );
+setDvar( "scr_stp_rpd", 5.29 );
+setDvar( "scr_stp_m60e4", 7.54 );
+
+// Sniper class weapons
+setDvar( "scr_stp_dragunov", 7.33 );
+
+setDvar( "scr_stp_m40a3", 10.09 );
+
+setDvar( "scr_stp_barrett", 116.13 );
+
+setDvar( "scr_stp_remington700", 10.09 );
+
+setDvar( "scr_stp_m21", 7.51 );
+
+// Handguns
+setDvar( "scr_stp_beretta", 3.60 );
+setDvar( "scr_stp_beretta_silenced", 3.60 );
+
+setDvar( "scr_stp_colt45", 7.84 );
+setDvar( "scr_stp_colt45_silenced", 7.84 );
+
+setDvar( "scr_stp_usp", 7.84 );
+setDvar( "scr_stp_usp_silenced", 7.84 );
+
+setDvar( "scr_stp_deserteagle", 20.25 );
+
+}
+
+weaponLengthModTweaks()
+{
+// Assault class weapons
+setDvar( "scr_wl_m16", 1 );
+setDvar( "scr_wl_m16_silenced", 1 );
+
+setDvar( "scr_wl_ak47", 1 );
+setDvar( "scr_wl_ak47_silenced", 1 );
+
+setDvar( "scr_wl_m4", 1 );
+setDvar( "scr_wl_m4_silenced", 1 );
+
+setDvar( "scr_wl_g3", 1 );
+setDvar( "scr_wl_g3_silenced", 1 );
+
+setDvar( "scr_wl_g36c", 1 );
+setDvar( "scr_wl_g36c_silenced", 1 );
+
+setDvar( "scr_wl_m14", 1 );
+setDvar( "scr_wl_m14_silenced", 1 );
+
+setDvar( "scr_wl_mp44", 1 );
+
+// Special Ops class weapons
+setDvar( "scr_wl_mp5", 1 );
+setDvar( "scr_wl_mp5_silenced", 1 );
+
+setDvar( "scr_wl_skorpion", 1 );
+setDvar( "scr_wl_skorpion_silenced", 1 );
+
+setDvar( "scr_wl_uzi", 1 );
+setDvar( "scr_wl_uzi_silenced", 1 );
+
+setDvar( "scr_wl_ak74u", 1 );
+setDvar( "scr_wl_ak74u_silenced", 1 );
+
+setDvar( "scr_wl_p90", 1 );
+setDvar( "scr_wl_p90_silenced", 1 );
+
+// Demolition class weapons
+//setDvar( "scr_wl_m1014", 1 );
+//setDvar( "scr_wl_winchester1200", 1 );
+
+// Heavy gunner class weapons
+setDvar( "scr_wl_saw", 1 );
+setDvar( "scr_wl_rpd", 1 );
+setDvar( "scr_wl_m60e4", 1 );
+
+// Sniper class weapons
+setDvar( "scr_wl_dragunov", 1 );
+
+setDvar( "scr_wl_m40a3", 1 );
+
+setDvar( "scr_wl_barrett", 1 );
+
+setDvar( "scr_wl_remington700", 1 );
+
+setDvar( "scr_wl_m21", 1 );
+
+// Handguns
+setDvar( "scr_wl_beretta", 1 );
+setDvar( "scr_wl_beretta_silenced", 1 );
+
+setDvar( "scr_wl_colt45", 1 );
+setDvar( "scr_wl_colt45_silenced", 1 );
+
+setDvar( "scr_wl_usp", 0.03333 );
+setDvar( "scr_wl_usp_silenced", 1 );
+
+setDvar( "scr_wl_deserteagle", 1 );
+
+}
+
+weaponSpeedModTweaks()
+{
+// Assault class weapons
+setDvar( "scr_ws_m16_acog", 37323 );
+
+setDvar( "scr_ws_ak47_acog", 30079 );
+
+setDvar( "scr_ws_m4_acog", 34803 );
+
+setDvar( "scr_ws_g3_acog", 31496 );
+
+setDvar( "scr_ws_g36c_acog", 33465 );
+
+setDvar( "scr_ws_m14_acog", 33465 );
+
+
+// Special Ops class weapons
+setDvar( "scr_ws_mp5_acog", 15748 );
+
+setDvar( "scr_ws_skorpion_acog", 12589 );
+
+setDvar( "scr_ws_uzi_acog", 15748 );
+
+setDvar( "scr_ws_ak74u_acog", 30079 );
+
+setDvar( "scr_ws_p90_acog", 28150 );
+
+// Heavy gunner class weapons
+setDvar( "scr_ws_saw_acog", 36024 );
+setDvar( "scr_ws_rpd_acog", 28937 );
+setDvar( "scr_ws_m60e4_acog", 33585 );
+
+// Sniper class weapons
+setDvar( "scr_ws_dragunov", 32677 );
+setDvar( "scr_ws_dragunov_acog", 32677 );
+
+setDvar( "scr_ws_m40a3", 35433 );
+setDvar( "scr_ws_m40a3_acog", 33585 );
+
+setDvar( "scr_ws_barrett", 34724 );
+setDvar( "scr_ws_barrett_acog", 34724 );
+
+setDvar( "scr_ws_remington700", 35433 );
+setDvar( "scr_ws_remington700_acog", 35433 );
+
+setDvar( "scr_ws_m21", 33465 );
+setDvar( "scr_ws_m21_acog", 33465 );
+
+
+}
+
+weaponZoomModTweaks()
+{
+// Assault class weapons
+setDvar( "scr_wzl_m16_acog", 16 );
+
+setDvar( "scr_wzl_ak47_acog", 16 );
+
+setDvar( "scr_wzl_m4_acog", 16 );
+
+setDvar( "scr_wzl_g3_acog", 16 );
+
+setDvar( "scr_wzl_g36c_acog", 16 );
+
+setDvar( "scr_wzl_m14_acog", 16 );
+
+// Special Ops class weapons
+setDvar( "scr_wzl_mp5_acog", 16 );
+
+setDvar( "scr_wzl_skorpion_acog", 16 );
+
+setDvar( "scr_wzl_uzi_acog", 16 );
+
+setDvar( "scr_wzl_ak74u_acog", 16 );
+
+setDvar( "scr_wzl_p90_acog", 16 );
+
+// Heavy gunner class weapons
+setDvar( "scr_wzl_saw_acog", 16 );
+setDvar( "scr_wzl_rpd_acog", 16 );
+setDvar( "scr_wzl_m60e4_acog", 16 );
+
+// Sniper class weapons
+setDvar( "scr_wzl_dragunov", 9 );
+setDvar( "scr_wzl_dragunov_acog", 16 );
+
+setDvar( "scr_wzl_m40a3", 8 );
+setDvar( "scr_wzl_m40a3_acog", 16 );
+
+setDvar( "scr_wzl_barrett", 5 );
+setDvar( "scr_wzl_barrett_acog", 16 );
+
+setDvar( "scr_wzl_remington700", 6 );
+setDvar( "scr_wzl_remington700_acog", 16 );
+
+setDvar( "scr_wzl_m21", 8 );
+setDvar( "scr_wzl_m21_acog", 16 );
+
+
+}
+
+
