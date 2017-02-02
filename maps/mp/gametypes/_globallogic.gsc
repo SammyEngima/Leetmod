@@ -979,14 +979,6 @@ spawnPlayer()
 	
 	//ProjectileWeapons
     self thread  maps\mp\gametypes\_wdrmod::AfterSpawn();
-	//PeZBOT
-	if( level.scr_pezbots_enable ) {
-		self openwarfare\_pezbot::DeinitTargetables();
-		self openwarfare\_pezbot::InitTargetables();
-		if (getdvar("scr_pezbots_mode") == "dev")
-			self thread openwarfare\_pezbot::Developer();
-	}
-  //PeZBOT/
 }
 
 hidePerksAfterTime( delay )
@@ -1798,16 +1790,6 @@ endGame( winner, endReasonText )
 	
 	// ## Comented for now
 	//openwarfare\_advancedmvs::mapVoting_Intermission();
-	
-	//PeZBOT
-	if( level.scr_pezbots_enable ) {
-		openwarfare\_pezbot::KickAllAlliesBots();
-		openwarfare\_pezbot::KickAllAxisBots();
-		// This line doesn't make sense, why another logic for ending the map ?
-		// and also, endmap calls loadMap(map, type), and parameters map,type aren't used..
-		// strange functions
-		//openwarfare\_pezbot::endmap();
-	}
 	
 	players = level.players;
 	for ( index = 0; index < players.size; index++ ) {
@@ -3160,26 +3142,6 @@ startGame()
 		openwarfare\_strategyperiod::start();
 	}
 	
-	//PeZBOT
-	if( level.scr_pezbots_enable ) {
-		if(getdvar("scr_pezbots_botKickCount") != "" && getDvarInt("scr_pezbots_botKickCount") > 0)
-		{
-			setDvar("scr_pezbots", getDvarInt("scr_pezbots_botKickCount"));
-			setDvar("scr_pezbots_botKickCount", 0);
-		}
-		if(getdvar("scr_pezbots_botKickCount_allies") != "" && getDvarInt("scr_pezbots_botKickCount_allies") > 0)
-		{
-			setDvar("scr_pezbots_allies", getDvarInt("scr_pezbots_botKickCount_allies"));
-			setDvar("scr_pezbots_botKickCount_allies", 0);
-		}
-		if(getdvar("scr_pezbots_botKickCount_axis") != "" && getDvarInt("scr_pezbots_botKickCount_axis") > 0)
-		{
-			setDvar("scr_pezbots_axis", getDvarInt("scr_pezbots_botKickCount_axis"));
-			setDvar("scr_pezbots_botKickCount_axis", 0);
-		}
-	}
-	//PeZBOT/
-	
 	prematchPeriod();
 	level notify("prematch_over");
 	
@@ -4443,11 +4405,6 @@ Callback_PlayerConnect()
 		
 	if ( level.teambased )
 		self updateScores();
-		
-	//PeZBOT
-  if( level.scr_pezbots_enable )
-		self openwarfare\_pezbot::Connected();
-  //PeZBOT/
 	
 	// When joining a game in progress, if the game is at the post game state (scoreboard) the connecting player should spawn into intermission
 	if ( game["state"] == "postgame" ) {
@@ -4658,10 +4615,6 @@ kickWait( waittime )
 
 Callback_PlayerDisconnect()
 {
-  //PeZBOT
-  if( level.scr_pezbots_enable && isDefined(self.bIsBot) && self.bIsBot )
-		self openwarfare\_pezbot::Disconnected();
-  //PeZBOT
 	
 	self removePlayerOnDisconnect();
 	
@@ -5225,17 +5178,6 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	if ( game["state"] == "postgame" )
 		return;
 	
-	//PeZBOT
-	if( level.scr_pezbots_enable ) {
-		if( isDefined(self.bIsBot) && self.bIsBot == true ) {
-			if( attacker.classname == "script_vehicle" && isDefined( attacker.owner ) )
-				self.murderer = attacker.owner;
-			else
-				self.murderer = attacker;
-		}
-	}
-	//PeZBOT/
-	
 	prof_begin( "PlayerKilled pre constants" );
 	
 	deathTimeOffset = 0;
@@ -5640,11 +5582,6 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	
 	self thread [[level.onPlayerKilled]](eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
 	
-	//PeZBOT detach weapon attachment
-  if( level.scr_pezbots_enable && isDefined(self.bIsBot) && self.bIsBot )
-    self detach(getWeaponModel(self.actualWeapon), "TAG_WEAPON_RIGHT", true);
-  //PeZBOT/
-	
 	if ( sWeapon == "frag_grenade_short_mp" || sWeapon == "none" )
 		doKillcam = false;
 		
@@ -5711,12 +5648,6 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	}
 	
 	prof_end( "PlayerKilled post constants" );
-	
-	//PeZBOT
-  if( level.scr_pezbots_enable && isDefined(self.bIsBot) && self.bIsBot )
-    self openwarfare\_pezbot::BotReset();
-  //PeZBOT/
-	
 	if ( game["state"] != "playing" ) {
 		self.sessionstate = "dead";
 		self.spectatorclient = -1;
