@@ -47,7 +47,7 @@ init()
 	thread openwarfare\_overtime::init();
 	//thread openwarfare\_owbattlechatter::init();
 	//thread openwarfare\_paindeathsounds::init();
-	thread openwarfare\_pezbot::init();
+	//thread openwarfare\_pezbot::init();
 	thread openwarfare\_playerdvars::init();
 	thread openwarfare\_players::init();
 	thread openwarfare\_quickactions::init();

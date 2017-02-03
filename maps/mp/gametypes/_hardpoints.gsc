@@ -1145,25 +1145,6 @@ triggerHardpoint( hardpointType )
 			}
 		}
 		// [0.0.1]
-		
-    //PeZBOT
-    result = false;	
-		if(isDefined(self.bIsBot) && self.bIsBot && !isDefined(self.bIsDog)) {
-		  for(i = 0; i < level.players.size; i++) {
-		    if(self openwarfare\_pezbot::IsEnemy(level.players[i])) {
-  		    self useAirstrike(level.players[i].origin);
-  		    break;
-  		  }
-		  }
-      result = true;		
-		}
-		else {
-      result = self selectAirstrikeLocation();
-    }
-    //PeZBot/
-		
-		if ( !isDefined( result ) || !result )
-			return false;
 			
 		if ( level.teambased ) {
 			team = self.pers["team"];

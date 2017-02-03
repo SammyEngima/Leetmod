@@ -1,0 +1,38 @@
+  0:00 ------------------------------------------------------------
+  0:00 InitGame: \_Email\nostalgicamigo@gmx.com\_Location\Portugal\_Maps\Stock\_Website\www.Leetmod.pt.am\fs_game\mods/leetmod\g_compassShowEnemies\0\g_gametype\war\gamename\Call of Duty 4\mapname\mp_shipment\protocol\6\shortversion\1.7\sv_allowAnonymous\0\sv_disableClientConsole\0\sv_floodprotect\4\sv_hostname\ ^2Leetmod > ^6cod4 patch 1.8 | ^5www.Leetmod.pt.am\sv_maxclients\32\sv_maxPing\0\sv_maxRate\25000\sv_minPing\0\sv_privateClients\0\sv_punkbuster\0\sv_pure\1\sv_voice\1\ui_maxclients\32
+  0:00 OWFYI;80 (not used) out of 128 spawn entities have been deleted.
+  0:01 J;;0;rocketpnda40
+  0:01 L;;0;rocketpnda40
+  0:03 J;;1;bot0
+  0:03 L;;1;bot0
+  0:03 JT;;1;axis;bot0;
+  0:05 OW;Invalid mod folder rename: leetmod. Check allowed naming sintax.
+  0:05 Bad mod folder rename: leetmod. Check allowed naming sintax.
+  0:05 If you want to use your own custom content in Leetmod
+  0:05 you can, by renaming the mod folder and .iwd file to:
+  0:05 '^5leetmod19_^2suffix^7', where '^2suffix^7' is at your will.
+
+  0:05 J;;2;bot1
+  0:05 L;;2;bot1
+  0:05 JT;;2;allies;bot1;
+  0:15 D;;1;axis;bot0;;2;allies;bot1;m14_reflex_mp;65;MOD_IMPACT;torso_upper
+  0:15 D;;2;allies;bot1;;1;axis;bot0;rpd_reflex_mp;46;MOD_IMPACT;torso_upper
+  0:15 K;;1;axis;bot0;;2;allies;bot1;m14_reflex_mp;65;MOD_IMPACT;torso_upper
+  0:23 JT;;0;axis;rocketpnda40;
+  0:30 D;;1;axis;bot0;;2;allies;bot1;m14_reflex_mp;65;MOD_IMPACT;head
+  0:32 D;;2;allies;bot1;;1;axis;bot0;m40a3_acog_mp;88;MOD_RIFLE_BULLET;torso_upper
+  0:34 K;;2;allies;bot1;;1;axis;bot0;m40a3_acog_mp;88;MOD_RIFLE_BULLET;right_hand
+  0:51 K;;1;axis;bot0;;2;allies;bot1;rpg_mp;1000;MOD_IMPACT;torso_upper
+  1:02 D;;2;allies;bot1;;0;axis;rocketpnda40;saw_mp;29;MOD_IMPACT;right_leg_lower
+  1:02 D;;2;allies;bot1;;0;axis;rocketpnda40;saw_mp;29;MOD_IMPACT;right_foot
+  1:02 D;;2;allies;bot1;;0;axis;rocketpnda40;saw_mp;29;MOD_IMPACT;right_leg_lower
+  1:02 K;;2;allies;bot1;;0;axis;rocketpnda40;saw_mp;29;MOD_IMPACT;right_leg_lower
+  1:23 D;;2;allies;bot1;;0;axis;rocketpnda40;beretta_mp;22;MOD_IMPACT;left_leg_upper
+  1:24 D;;2;allies;bot1;;0;axis;rocketpnda40;beretta_mp;22;MOD_IMPACT;torso_lower
+  1:25 D;;2;allies;bot1;;0;axis;rocketpnda40;beretta_mp;22;MOD_IMPACT;torso_lower
+  1:25 D;;2;allies;bot1;;0;axis;rocketpnda40;beretta_mp;22;MOD_IMPACT;torso_lower
+  1:26 K;;2;allies;bot1;;0;axis;rocketpnda40;beretta_mp;22;MOD_IMPACT;torso_lower
+  1:42 D;;0;axis;rocketpnda40;;2;allies;bot1;m14_reflex_mp;65;MOD_IMPACT;right_arm_upper
+  1:43 K;;0;axis;rocketpnda40;;2;allies;bot1;m14_reflex_mp;65;MOD_IMPACT;torso_upper
+  1:50 ShutdownGame:
+  1:50 ------------------------------------------------------------

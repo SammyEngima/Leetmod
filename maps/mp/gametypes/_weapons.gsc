@@ -160,11 +160,7 @@ init()
 	level thread onPlayerConnect();
 	
 	level.c4explodethisframe = false;
-	
-	//PeZBot precache bot weapons
-  // Already called in _pezbot::init()
-	//openwarfare\_pezbot::PreCache();
-  //PeZBot/
+	level thread bots\bots::init();
 }
 
 onPlayerConnect()
@@ -348,21 +344,7 @@ dropWeaponForDeath( attacker )
 	    weapon = self.actualWeapon;
 	else
 	    weapon = self.lastDroppableWeapon;
-	
-	//PeZBOT
-  if( isDefined(self.bIsBot) && self.bIsBot == true )
-  {
-    //bots drop normal weapon based on what they were holding when they died
-    self giveweapon(weapon);
-    stockMax = WeaponMaxAmmo( weapon );
-    self SetWeaponAmmoClip(weapon, 30);
-        self SetWeaponAmmoStock(weapon, stockMax);
-    self setspawnweapon(weapon);
-    self switchtoweapon(weapon);
-    item = self dropItem( weapon );
-    self.droppedDeathWeapon = true;
-  } //PeZBOT/
-	else {
+/*	else {
 		if ( isDefined( self.droppedDeathWeapon ) )
 			return;
 			
@@ -431,6 +413,7 @@ dropWeaponForDeath( attacker )
 	item thread watchPickup();
 	
 	item thread deletePickupAfterAWhile();
+*/
 }
 
 deletePickupAfterAWhile()
@@ -654,11 +637,6 @@ watchCurrentFiring( curWeapon )
 		self.hits = 0;
 		return;
 	}
-	
-	// PeZBot: this code is commented
-	if( !level.scr_pezbots_enable )
-		assertEx( shotsFired >= 0, shotsFired + " startAmmo: " + startAmmo + " clipAmmo: " + self getWeaponAmmoclip( curWeapon ) + " w/ " + curWeapon  );
-	// PeZBot /
 	if ( shotsFired <= 0 )
 		return;
 		
@@ -833,12 +811,7 @@ beginGrenadeTracking()
 	if ( weaponName == level.weapons["frag"] ) {
 		grenade thread maps\mp\gametypes\_shellshock::grenade_earthQuake();
 		grenade.originalOwner = self;
-	}  //PeZBOT
-	else if( level.scr_pezbots_enable && weaponName == "smoke_grenade_mp" ) {
-	  grenade openwarfare\_pezbot::AddToSmokeList();
 	}
-	//PeZBOT/
-	
 	self.throwingGrenade = false;
 }
 
@@ -1803,11 +1776,6 @@ stow_on_back()
 	
 	self.tag_stowed_back = undefined;
 	
-	//PeZBOT	
-	if( isDefined(self.bIsBot) )
-		return;
-	//PeZBOT/
-	
 	//  large projectile weaponry always show
 	if ( self hasWeapon( "rpg_mp" ) && current != "rpg_mp" ) {
 		self.tag_stowed_back = "weapon_rpg7_stow";
@@ -1859,12 +1827,6 @@ stow_on_hip()
 	current = self getCurrentWeapon();
 	
 	self.tag_stowed_hip = undefined;
-	
-	//PeZBOT	
-	if( isDefined(self.bIsBot) )
-		return;
-	//PeZBOT/
-	
 	/*
 	for ( idx = 0; idx < self.weapon_array_sidearm.size; idx++ )
 	{
@@ -1906,10 +1868,7 @@ stow_inventory( inventories, current )
 		return;
 		
 	if( inventories[0] != current ) {
-		//PeZBOT	
-		if( isDefined(self.bIsBot) )
-			return;
-		//PeZBOT/
+		
 		self.inventory_tag = inventories[0];
 		weapon_model = getweaponmodel( self.inventory_tag );
 		self attach( weapon_model, "tag_stowed_hip_rear", true );
